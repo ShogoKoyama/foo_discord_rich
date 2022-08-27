@@ -6,8 +6,6 @@
 
 #include <ctime>
 
-#include <string> // +++
-
 namespace drp::internal
 {
 
@@ -238,9 +236,6 @@ void PresenceModifier::UpdateTrack( metadb_handle_ptr metadb )
     const std::u8string pathStr = queryData( config::largeImageQuery );
     const std::u8string replaceStr = u8"www.youtube.com/watch?v=";
     const std::u8string replaceWithStr = u8"https://i.ytimg.com/vi/";
-    //auto pos = pathStr.find_first( replaceStr );
-    //auto len = replaceStr.get_length();
-    //config::largeImageId_Artwork = ( ( pos != std::string::npos ) ? ( pathStr.replace( pos, len, "https://i.ytimg.com/vi/" ) + "/maxresdefault.jpg" ) : "https://www.dropbox.com/s/nzgsal09gwlx5h8/music-solid-colored.png?raw=1" );
     auto replaceRes = pathStr.replace_string( replaceStr, replaceWithStr );
     config::largeImageId_Artwork = ( ( replaceRes != 0 ) ? ( pathStr + "/maxresdefault.jpg" ) : "https://www.dropbox.com/s/nzgsal09gwlx5h8/music-solid-colored.png?raw=1" );
     UpdateImage();
